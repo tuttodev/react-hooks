@@ -1,23 +1,22 @@
-import { useState, useEffect, useReducer, useMemo } from 'react'
+import { useState, useReducer, useMemo, useRef, useCallback } from 'react'
+import { useCharacters } from '../../hooks/useCharacters'
 import { Character } from '../Character/index';
 import { Search } from '../Search';
 import { favoritesReducer, initialState } from './reducer/favoritesReducer'
 import './styles.scss';
 
 export const Characters = () => {
-  const [characters, setCharacters] = useState([]);
+  const characters = useCharacters()
   const [state, dispatch] = useReducer(favoritesReducer, initialState)
   const [keywordSearch, setKeywordSearch] = useState('')
 
-  useEffect(() => {
-    fetch('https://rickandmortyapi.com/api/character/')
-      .then(response => response.json())
-      .then(data => setCharacters(data.results));
-  }, []);
+  const inputSearchRef = useRef();
 
   const addToFav = (character) => dispatch({ type: 'ADD_TO_FAVORITE', payload: character })
 
-  const handleSearch = (event) => setKeywordSearch(event.target.value)
+  const handleSearch = useCallback(() => {
+    setKeywordSearch(inputSearchRef.current.value)
+  }, [])
 
   const filteredCharacters = useMemo(() => {
     return characters.filter(ct => ct.name.toLowerCase().includes(keywordSearch.toLowerCase()))
@@ -29,6 +28,7 @@ export const Characters = () => {
         <Search
           onChange={handleSearch}
           placeholder='Search character name...'
+          inputSearchRef={inputSearchRef}
         />
       </div>
       <div className='characters'>
