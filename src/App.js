@@ -1,23 +1,16 @@
-import logo from './logo.svg';
+import { useContext } from 'react'
 import './App.css';
+import { Header } from './components/Header/index';
+import { Characters } from './components/Characters/index';
+import { ThemeContext } from './context/ThemeContext';
 
 function App() {
+  const { isDarkMode } = useContext(ThemeContext)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{ backgroundColor: isDarkMode ? '#3f3f3f': '' }}>
+      <Header />
+      <Characters />
     </div>
   );
 }

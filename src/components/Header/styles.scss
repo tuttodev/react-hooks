@@ -1,0 +1,16 @@
+.header {
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  background-color: #ccc;
+  box-shadow: 1px -1px 20px 0px;
+
+  &__btn-darkmode {
+    padding: 7px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+
+}
