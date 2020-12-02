@@ -15,4 +15,4 @@ also we can change to a DarkMode
 * npm install
 * npm start
 
-![screenshot of app](https://user-images.githubusercontent.com/41929097/100936514-a5345400-34bf-11eb-9b0e-177b6ac5e984.PNG)
+![Captura](https://user-images.githubusercontent.com/41929097/100936696-f17f9400-34bf-11eb-85aa-27f8d8ccf4ca.PNG)
